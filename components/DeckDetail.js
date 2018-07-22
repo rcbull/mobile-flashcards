@@ -2,67 +2,49 @@ import React from 'react'
 import { StyleSheet, Button, View, Text } from 'react-native'
 import { connect } from 'react-redux'
 
-const style = StyleSheet.create({
+const styles = StyleSheet.create({
     deckStyle: {
         flex: 1,
         justifyContent: 'space-around'
     },
-    deckContainer: {
-        flex: 1,
-        height: 300,
-        justifyContent: 'space-around'
-    },
-    startQuizContainer: {
-        flex: 1,
-        justifyContent: 'space-around',
-        height: 80
-    },
-    titleContainer: {
-        flex: 3,
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
     titleStyle: {
-        fontSize: 30,
+        fontSize: 22,
         textAlign: 'center'
     },
     cardCountStyle: {
-        fontSize: 16,
-        color: '#757575'
-    },
-    buttonContainer: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    quizButton: {
-        backgroundColor: '#007aff',
-        borderColor: '#007aff'
-    },
-    buttonText: {
-        color: '#fff'
-    },
-    noCardsText: {
-        marginHorizontal: 20,
-        textAlign: 'center',
-        color: '#757575'
+        fontSize: 14,
+        color: '#106fb6'
     }
 })
 
 class DeckDetail extends React.Component {
     render() {
-        // console.log(this.props)
-        const { deckId, deckTitle } = this.props.navigation.state.params
+        const { deckId } = this.props.navigation.state.params
         const deck = this.props.decks[deckId]
 
+        let startQuizButton = true
+        if (deck.questions.length > 0) {
+            startQuizButton = false
+        }
+
         return (
-            <View style={style.deckStyle}>
-                <Text>Deck Detail</Text>
-                <Text>{deckId}</Text>
-                <Text>{deckTitle}</Text>
+            <View style={styles.deckStyle}>
+                <Text style={styles.titleStyle}>{deck.title}</Text>
+                <Text style={styles.titleStyle}>
+                    {deck.questions.length} cards
+                </Text>
                 <Button
-                    title="Go to Home"
-                    onPress={() => this.props.navigation.navigate('Home')}
+                    title="Create New Question"
+                    onPress={() =>
+                        this.props.navigation.navigate('NewCard', {
+                            deckId: deckId
+                        })
+                    }
+                />
+                <Button
+                    title="Start a Quiz"
+                    disabled={startQuizButton}
+                    onPress={() => this.props.navigation.navigate('Quiz')}
                 />
             </View>
         )
@@ -71,8 +53,17 @@ class DeckDetail extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        decks: state
+        decks: state.default.decks
     }
 }
 
-export default connect(mapStateToProps)(DeckDetail)
+const mapDispatchToProps = dispatch => {
+    return {
+        getDecks: () => dispatch(DeckActions.getDecks())
+    }
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(DeckDetail)
