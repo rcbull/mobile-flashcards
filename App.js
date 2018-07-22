@@ -6,7 +6,7 @@ import DetailsScreen from './components/DeckDetail'
 import NewDeckScreen from './components/NewDeck'
 import NewCardScreen from './components/NewCard'
 import QuizScreen from './components/Quiz'
-import * as Api from './utils/api'
+import ScoreScreen from './components/Score'
 import { setLocalNotification } from './utils/notification'
 import {
     createBottomTabNavigator,
@@ -19,7 +19,8 @@ const HomeStack = createStackNavigator({
     NewDeck: NewDeckScreen,
     DeckDetail: DetailsScreen,
     Quiz: QuizScreen,
-    NewCard: NewCardScreen
+    NewCard: NewCardScreen,
+    Score: ScoreScreen
 })
 
 const Navigation = createBottomTabNavigator(
