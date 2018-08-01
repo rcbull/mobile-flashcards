@@ -85,7 +85,7 @@ class NewDeckScreen extends React.Component {
                     <View>
                         <Button
                             title="Create Deck"
-                            color="#841584"
+                            color="#4d4dff"
                             disabled={this.state.title.length ? false : true}
                             onPress={this.handleCreateNewDeck}
                         />

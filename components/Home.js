@@ -79,7 +79,6 @@ class Home extends React.Component {
 
     render() {
         const { decks } = this.props
-        // console.log('render', decks)
 
         let flattenData
         if (decks) {
