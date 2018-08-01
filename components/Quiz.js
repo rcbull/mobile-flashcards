@@ -6,10 +6,28 @@ import * as deckActions from '../actions/deck'
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        flexDirection: 'row',
+        flexDirection: 'column',
         backgroundColor: 'ghostwhite',
         alignItems: 'center',
         justifyContent: 'space-around'
+    },
+    row: {
+        flex: 1,
+        flexDirection: 'row',
+        marginLeft: 10,
+        marginRight: 10,
+        marginTop: 10,
+        marginBottom: 10,
+        alignItems: 'center',
+        justifyContent: 'space-around'
+    },
+    column: {
+        width: 150,
+        marginLeft: 10,
+        marginRight: 10,
+        marginTop: 10,
+        marginBottom: 10,
+        alignItems: 'center'
     },
     box: {
         width: 100,
@@ -30,6 +48,9 @@ const styles = StyleSheet.create({
         color: 'darkslategray',
         fontWeight: 'bold',
         fontSize: 18
+    },
+    button: {
+        height: 50
     }
 })
 
@@ -112,8 +133,22 @@ class QuizScreen extends React.Component {
                     }
                     onPress={this.handleQuestionOrAnswer}
                 />
-                <Button title="Correct" onPress={this.handleCorrectPress} />
-                <Button title="Incorrect" onPress={this.handleIncorrectPress} />
+                <View style={styles.row}>
+                    <View style={styles.column}>
+                        <Button
+                            style={styles.button}
+                            title="Correct"
+                            onPress={this.handleCorrectPress}
+                        />
+                    </View>
+                    <View style={styles.column}>
+                        <Button
+                            style={styles.button}
+                            title="Incorrect"
+                            onPress={this.handleIncorrectPress}
+                        />
+                    </View>
+                </View>
             </View>
         ) : (
             <View />

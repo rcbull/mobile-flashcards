@@ -19,7 +19,7 @@ class ScoreScreen extends React.Component {
 
         return (
             <View style={styles.container}>
-                <Text style={styles.scoreStyle}>Your Score is{score}</Text>
+                <Text style={styles.scoreStyle}>Your Score is {score}</Text>
                 <Button
                     title="Restart Quiz"
                     onPress={() =>

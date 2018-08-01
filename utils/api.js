@@ -1,13 +1,12 @@
 import { AsyncStorage } from 'react-native'
 
 // key to save decks in storage
-const STORAGE_KEY = 'MobileFlashcards:deckp'
+const STORAGE_KEY = 'MobileFlashcards:deck'
 
 export const getDecks = async () =>
     await AsyncStorage.getItem(STORAGE_KEY)
         .then(results => {
-            //console.log('results ->', results)
-
+            // mock data to first deck
             const initialData = {
                 1: {
                     title: 'My First Deck - React',
@@ -20,6 +19,7 @@ export const getDecks = async () =>
                 }
             }
 
+            // using mock data, if not exist decks in storage
             if (results === null) {
                 AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(initialData))
             }
@@ -29,7 +29,6 @@ export const getDecks = async () =>
         .catch(error => console.log(error))
 
 export const saveDeck = async (deck, key) => {
-    //console.log(deck, key)
     await AsyncStorage.mergeItem(
         STORAGE_KEY,
         JSON.stringify({
