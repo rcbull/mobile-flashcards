@@ -66,9 +66,7 @@ class Home extends React.Component {
     }
 
     componentDidMount() {
-        this.props.getDecks().then(() => {
-            this.setState({ ready: true })
-        })
+        this.update();
     }
 
     update = e => {

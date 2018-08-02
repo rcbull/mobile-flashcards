@@ -81,13 +81,9 @@ class QuizScreen extends React.Component {
     }
 
     handleQuestionOrAnswer = () => {
-        this.setState(() => {
-            if (this.state.showQuestion === true) {
-                return { showQuestion: false }
-            } else {
-                return { showQuestion: true }
-            }
-        })
+        this.setState(state => ({
+            showQuestions: !state.showQuestion
+        }))
     }
 
     handleResetPress = () => {
