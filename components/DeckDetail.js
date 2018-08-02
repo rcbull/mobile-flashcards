@@ -19,8 +19,11 @@ const styles = StyleSheet.create({
 
 class DeckDetail extends React.Component {
     render() {
-        const { deckId } = this.props.navigation.state.params
-        const deck = this.props.decks[deckId]
+        let { deckId } = this.props.navigation.state.params
+        let deck = this.props.decks[deckId]
+        if (this.props.navigation.state.params.hasOwnProperty('deck')) {
+            deck = this.props.navigation.state.params.deck.entry
+        }
 
         let startQuizButton = true
         if (deck.questions.length > 0) {

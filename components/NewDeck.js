@@ -62,6 +62,12 @@ class NewDeckScreen extends React.Component {
         this.props
             .addDeck(newDeck.entry, newDeck.key)
             .then(this.props.getDecks())
+            .then(
+                this.props.navigation.navigate('DeckDetail', {
+                    deckId: newDeck.key,
+                    deck: newDeck
+                })
+            )
 
         this.setState({ title: '' })
     }

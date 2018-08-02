@@ -82,7 +82,7 @@ class QuizScreen extends React.Component {
 
     handleQuestionOrAnswer = () => {
         this.setState(state => ({
-            showQuestions: !state.showQuestion
+            showQuestion: !state.showQuestion
         }))
     }
 

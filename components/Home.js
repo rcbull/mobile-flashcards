@@ -78,6 +78,8 @@ class Home extends React.Component {
     render() {
         const { decks } = this.props
 
+        console.log(decks)
+
         let flattenData
         if (decks) {
             flattenData = Object.keys(decks).map(id => {
